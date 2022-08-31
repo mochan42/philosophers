@@ -3,8 +3,8 @@
 
 NAME				:= philo
 
-CC					:= clang
-CFLAGS				:= -Wall -Wextra -Werror -fsanitize=thread -g
+CC					:= gcc
+CFLAGS				:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 RM					:= rm -rf
 INCS				:= -I ./inc/
 HEADER				:= ./inc/philosophers.h
