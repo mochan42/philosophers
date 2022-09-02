@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/02 21:57:52 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/02 22:16:30 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,40 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-int	main(int argc, char **argv)
+void	create_threads(t_prgm *vars)
 {
-	t_prgm		philo;
 	pthread_t	*ph;
 	int			i;
 	int			*a;
+
+	ph = malloc(sizeof(pthread_t) * (vars->nb_of_philos));
+	i = 1;
+	while (i <= vars->nb_of_philos)
+	{
+		a = malloc(sizeof(int));
+		*a = i;
+		if (pthread_create(&ph[i], NULL, &routine, a) != 0)
+			perror("Failed to create thread");
+		i++;
+	}
+	i = 1;
+	while (i <= vars->nb_of_philos)
+	{
+		if (pthread_join(ph[i], NULL) != 0)
+			perror("Failed to join thread");
+		i++;
+	}
+	free(ph);
+}
+
+int	main(int argc, char **argv)
+{
+	t_prgm		philo;
 
 	philo.argc = argc;
 	philo.argv = argv;
 	check_input(&philo);
 	initialize(&philo);
-	ph = malloc(sizeof(pthread_t) * (philo.nb_of_philos));
-	i = 1;
-	while (i <= philo.nb_of_philos)
-	{
-		a = malloc(sizeof(int));
-		*a = i;
-		if (pthread_create(&ph[i], NULL, &routine, a) != 0)
-		{
-			perror("Failed to create thread");
-		}
-		i++;
-	}
-	i = 1;
-	while (i <= philo.nb_of_philos)
-	{
-		if (pthread_join(ph[i], NULL) != 0)
-		{
-			perror("Failed to join thread");
-		}
-		i++;
-	}
-	free(ph);
+	create_threads(&philo);
 	return (0);
 }
