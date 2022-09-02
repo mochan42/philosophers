@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/08/31 16:15:12 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/02 16:21:54 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,29 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 /* ########################################################################## */
 /* STRUCTURES */
 
 typedef struct s_prgm
 {
-	int		argc;
-	char	**argv;
-	int		number_of_philosophers;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		number_of_times_each_philosopher_must_eat;
-}				t_prgm;
+	time_t			start_time;
+	int				argc;
+	char			**argv;
+	int				nb_of_philos;
+	int				nb_of_forks;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				number_must_eat;
+}	t_prgm;
+
+typedef struct s_philo
+{
+	unsigned int	philo_id;
+	int				left_fork_id;
+}	t_philo;
 
 /* ########################################################################## */
 /* CONSTANTS */

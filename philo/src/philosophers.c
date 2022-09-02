@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/08/31 17:49:47 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/02 21:57:52 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,59 @@
 
 void	initialize(t_prgm *vars)
 {
-	vars->number_of_philosophers = ft_atoi(vars->argv[1]);
+	vars->nb_of_philos = ft_atoi(vars->argv[1]);
 	vars->time_to_die = ft_atoi(vars->argv[2]);
 	vars->time_to_eat = ft_atoi(vars->argv[3]);
 	vars->time_to_sleep = ft_atoi(vars->argv[4]);
 	if (vars->argc == 6)
-		vars->number_of_times_each_philosopher_must_eat = ft_atoi(
+		vars->number_must_eat = ft_atoi(
 				vars->argv[5]);
 	else
-		vars->number_of_times_each_philosopher_must_eat = 0;
+		vars->number_must_eat = 0;
 }
 
-void	*routine()
+void	*routine(void *arg)
 {
-	printf("Hello from thread\n");
-	sleep(1);
-	printf("Hello again\n");
+	int	index;
+
+	index = *(int *) arg;
+	printf("philo %d\n", index);
+	free(arg);
 	return (NULL);
 }
 
 int	main(int argc, char **argv)
 {
 	t_prgm		philo;
-	pthread_t	t1;
-	pthread_t	t2;
-	
+	pthread_t	*ph;
+	int			i;
+	int			*a;
+
 	philo.argc = argc;
 	philo.argv = argv;
 	check_input(&philo);
 	initialize(&philo);
-	
-	pthread_create(&t1, NULL, &routine, NULL);
-	pthread_create(&t2, NULL, &routine, NULL);
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
+	ph = malloc(sizeof(pthread_t) * (philo.nb_of_philos));
+	i = 1;
+	while (i <= philo.nb_of_philos)
+	{
+		a = malloc(sizeof(int));
+		*a = i;
+		if (pthread_create(&ph[i], NULL, &routine, a) != 0)
+		{
+			perror("Failed to create thread");
+		}
+		i++;
+	}
+	i = 1;
+	while (i <= philo.nb_of_philos)
+	{
+		if (pthread_join(ph[i], NULL) != 0)
+		{
+			perror("Failed to join thread");
+		}
+		i++;
+	}
+	free(ph);
 	return (0);
 }
