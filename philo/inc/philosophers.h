@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/05 13:24:29 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/05 13:34:01 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	int				philo_id;
 	pthread_t		thread;
 	int				left_fork_id;
-	int				*right_fork_id;
+	int				right_fork_id;
 }	t_philo;
 
 typedef struct s_prgm
