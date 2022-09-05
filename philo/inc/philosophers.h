@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/02 22:21:05 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/05 13:24:29 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 /* ########################################################################## */
 /* STRUCTURES */
 
+typedef struct s_philo
+{
+	int				philo_id;
+	pthread_t		thread;
+	int				left_fork_id;
+	int				*right_fork_id;
+}	t_philo;
+
 typedef struct s_prgm
 {
 	time_t			start_time;
@@ -36,14 +44,8 @@ typedef struct s_prgm
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_must_eat;
+	t_philo			**philos;
 }	t_prgm;
-
-typedef struct s_philo
-{
-	unsigned int	philo_id;
-	int				left_fork_id;
-	int*			right_fork_id;
-}	t_philo;
 
 /* ########################################################################## */
 /* CONSTANTS */
@@ -55,6 +57,9 @@ typedef struct s_philo
 void		check_arg_is_digit(t_prgm	*vars);
 void		check_input(t_prgm	*vars);
 void		check_nb_arguments(t_prgm	*vars);
+
+/* init.c */
+void		initialize(t_prgm *vars);
 
 /* utils_1.c */
 int			my_isspace(char c);

@@ -24,6 +24,7 @@ END_COLOR			:= \033[0;39m
 # SOURCES
 
 SRC_FILES			:=	philosophers.c check_input.c utils_1.c\
+						init.c\
 
 OBJ_FILES			:= ${SRC_FILES:.c=.o}
 
