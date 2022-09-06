@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:46:12 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/06 16:34:15 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/06 17:31:28 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static t_philo	**init_philosophers(t_prgm *vars)
 		tab_philos[i] = malloc(sizeof(t_philo) * 1);
 		tab_philos[i]->philo_id = i;
 		init_forks(vars, tab_philos[i], i, &arr_forks[i]);
-		printf("philosopher %d : RIGHT fork number is %d.\n",
-			tab_philos[i]->philo_id, tab_philos[i]->right_fork->fork_id);
-		printf("philosopher %d : LEFT fork number is %d.\n",
-			tab_philos[i]->philo_id, tab_philos[i]->left_fork->fork_id);
+		// printf("philosopher %d : RIGHT fork number is %d.\n",
+		// 	tab_philos[i]->philo_id, tab_philos[i]->right_fork->fork_id);
+		// printf("philosopher %d : LEFT fork number is %d.\n",
+		// 	tab_philos[i]->philo_id, tab_philos[i]->left_fork->fork_id);
 		i++;
 	}
-	printf("==========================================================\n");
+	// printf("==========================================================\n");
 	return (tab_philos);
 }
 
@@ -64,6 +64,6 @@ void	initialize(t_prgm *vars)
 		vars->number_must_eat = ft_atoi(
 				vars->argv[5]);
 	else
-		vars->number_must_eat = 0;
+		vars->number_must_eat = -1;
 	vars->philos = init_philosophers(vars);
 }

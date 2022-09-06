@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/06 15:54:43 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/06 19:16:18 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 typedef struct s_fork
 {
 	int				fork_id;
-	int				fork_status;
+	int				fork_status; // 0 = fork is free, 1 = fork is in use
 }	t_fork;
 
 typedef struct s_philo
