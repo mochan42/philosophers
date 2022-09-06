@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/05 13:25:15 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/05 17:26:00 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	create_threads(t_prgm *vars)
 	i = 1;
 	while (i <= vars->nb_of_philos)
 	{
+		
+		
 		if (pthread_create(&vars->philos[i]->thread, NULL, &routine,
 				vars->philos[i]) != 0)
 			perror("Failed to create thread");

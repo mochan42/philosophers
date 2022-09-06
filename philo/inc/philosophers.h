@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/05 13:34:01 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/06 15:54:43 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@
 /* ########################################################################## */
 /* STRUCTURES */
 
+typedef struct s_fork
+{
+	int				fork_id;
+	int				fork_status;
+}	t_fork;
+
 typedef struct s_philo
 {
 	int				philo_id;
 	pthread_t		thread;
-	int				left_fork_id;
-	int				right_fork_id;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
 }	t_philo;
 
 typedef struct s_prgm
@@ -45,6 +51,7 @@ typedef struct s_prgm
 	int				time_to_sleep;
 	int				number_must_eat;
 	t_philo			**philos;
+	t_fork			*array_forks;
 }	t_prgm;
 
 /* ########################################################################## */
