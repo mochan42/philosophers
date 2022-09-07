@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/06 19:16:18 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/07 14:39:19 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,12 @@
 /* ########################################################################## */
 /* STRUCTURES */
 
-typedef struct s_fork
-{
-	int				fork_id;
-	int				fork_status; // 0 = fork is free, 1 = fork is in use
-}	t_fork;
-
 typedef struct s_philo
 {
 	int				philo_id;
 	pthread_t		thread;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }	t_philo;
 
 typedef struct s_prgm
@@ -50,12 +44,14 @@ typedef struct s_prgm
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_must_eat;
-	t_philo			**philos;
-	t_fork			*array_forks;
+	t_philo			*philos;
+	pthread_mutex_t	*array_forks;
 }	t_prgm;
 
 /* ########################################################################## */
 /* CONSTANTS */
+
+# define MAX_INT 2147483647
 
 /* ########################################################################## */
 /* FUNCTIONS */
@@ -64,6 +60,7 @@ typedef struct s_prgm
 void		check_arg_is_digit(t_prgm	*vars);
 void		check_input(t_prgm	*vars);
 void		check_nb_arguments(t_prgm	*vars);
+void		check_number_value(t_prgm *vars);
 
 /* init.c */
 void		initialize(t_prgm *vars);
