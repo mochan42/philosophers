@@ -6,13 +6,13 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:46:12 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 16:07:22 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/07 17:53:48 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
 
-static void init_philosophers(t_prgm *vars)
+static void	init_philosophers(t_prgm *vars)
 {
 	int			i;
 
@@ -28,7 +28,7 @@ static void init_philosophers(t_prgm *vars)
 	}
 }
 
-static void init_forks(t_prgm *vars)
+static void	init_forks(t_prgm *vars)
 {
 	int			i;
 
@@ -40,7 +40,7 @@ static void init_forks(t_prgm *vars)
 	}
 }
 
-static void assign_forks(t_prgm *vars)
+static void	assign_forks(t_prgm *vars)
 {
 	int			i;
 
@@ -49,7 +49,7 @@ static void assign_forks(t_prgm *vars)
 	{
 		vars->philos[i].right_fork = &vars->array_forks[i];
 		if (i != vars->philos[i].philo_id)
-			vars->philos[i].left_fork = &vars->array_forks[i+1];
+			vars->philos[i].left_fork = &vars->array_forks[i + 1];
 		else if (i == vars->nb_of_philos)
 			vars->philos[i].left_fork = &vars->array_forks[0];
 		i++;

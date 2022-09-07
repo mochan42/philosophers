@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:34:28 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 14:48:29 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/07 17:48:55 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	check_number_value(t_prgm *vars)
 	}
 	if (vars->number_must_eat > MAX_INT)
 	{
-		printf("error: number_of_times_each_philosopher_must_eat must be less than 2147483647.\n");
+		printf("error: number_of_times_each_philosopher_must_eat must\
+				 be less than 2147483647.\n");
 		exit (0);
 	}
 }
