@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 14:39:19 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:17:37 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 typedef struct s_philo
 {
 	int				philo_id;
+	int				ttd;
+	int				tte;
+	int				tts;
+	int				ttt;
+	time_t			start_time;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
@@ -64,6 +69,9 @@ void		check_number_value(t_prgm *vars);
 
 /* init.c */
 void		initialize(t_prgm *vars);
+
+/* time.c */
+time_t		get_time_ms(void);
 
 /* utils_1.c */
 int			my_isspace(char c);

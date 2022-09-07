@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 15:31:57 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:25:29 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,23 @@
 void	*routine(void *arg)
 {
 	t_philo	*philo;
+	// time_t	instant_ttrf;
+	// time_t	instant_ttlf;
+	// time_t	instant_tte;
+	// time_t	instant;
+	time_t	time;
 	
 	philo = (t_philo *) arg;
 	if (philo->philo_id % 2)
-		sleep(1);
+		sleep(3);
 	pthread_mutex_lock(philo->right_fork);
-	printf("%d has taken a fork\n", philo->philo_id);
+	time = get_time_ms();
+	printf("%10ld %d has taken a fork\n", time - philo->start_time, philo->philo_id);
 	pthread_mutex_lock(philo->left_fork);
-	printf("%d has taken a fork\n", philo->philo_id);
-	printf("%d is eating\n", philo->philo_id);
+	time = get_time_ms();
+	printf("%10ld %d has taken a fork\n", time - philo->start_time, philo->philo_id);
+	time = get_time_ms();
+	printf("%10ld %d is eating\n", time - philo->start_time, philo->philo_id);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	// printf("%d is sleeping\n", philo->philo_id);
@@ -62,6 +70,7 @@ int	main(int argc, char **argv)
 {
 	t_prgm		philo_prgm;
 	
+	philo_prgm.start_time = get_time_ms();
 	philo_prgm.argc = argc;
 	philo_prgm.argv = argv;
 	check_input(&philo_prgm);
