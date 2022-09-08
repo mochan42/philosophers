@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:46:12 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 17:53:48 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/08 18:18:33 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ static void	init_philosophers(t_prgm *vars)
 	}
 }
 
-static void	init_forks(t_prgm *vars)
-{
-	int			i;
+// static void	init_forks(t_prgm *vars)
+// {
+// 	int			i;
 
-	i = 0;
-	while (i < vars->nb_of_philos)
-	{
-		pthread_mutex_init(&vars->array_forks[i], NULL);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < vars->nb_of_philos)
+// 	{
+// 		pthread_mutex_init(&vars->array_forks[i], NULL);
+// 		i++;
+// 	}
+// }
+
 
 static void	assign_forks(t_prgm *vars)
 {
@@ -59,6 +60,6 @@ static void	assign_forks(t_prgm *vars)
 void	initialize(t_prgm *vars)
 {
 	init_philosophers(vars);
-	init_forks(vars);
+	// init_forks(vars);
 	assign_forks(vars);
 }

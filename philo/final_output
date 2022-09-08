@@ -1,0 +1,28 @@
+         0 philo 2 has taken a fork
+         1 philo 2 has taken a fork
+philo 2 end of meal = 201
+         1 philo 2 is eating
+       335 philo 2 finished eating
+       335 philo 2 is sleeping
+       535 philo 2 has finished sleeping
+       535 philo 2 is thinking
+       668 philo 2 has taken a fork
+       668 philo 2 has taken a fork
+philo 2 end of meal = 868
+       668 philo 2 is eating
+       871 philo 2 finished eating
+       871 philo 2 is sleeping
+      1071 philo 2 has finished sleeping
+      1071 philo 2 is thinking
+      1269 philo 2 has taken a fork
+      1269 philo 2 has taken a fork
+philo 2 end of meal = 1469
+      1269 philo 2 is eating
+      1471 philo 2 finished eating
+      1471 philo 2 is sleeping
+      1671 philo 2 has finished sleeping
+      1671 philo 2 is thinking
+      1870 philo 2 has taken a fork
+      1870 philo 2 has taken a fork
+philo 2 end of meal = 2070
+      1870 philo 2 is eating

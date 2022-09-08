@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/08 13:09:51 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/08 18:24:36 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg;
-	if (philo->philo_id % 2)
+	if (philo->philo_id % 2 != 0)
 		usleep(1000);
 	while (1)
 	{
+		pthread_mutex_init(philo->right_fork, NULL);
+		pthread_mutex_init(philo->left_fork, NULL);
 		pthread_mutex_lock(philo->right_fork);
 		take_a_fork(philo);
 		pthread_mutex_lock(philo->left_fork);
@@ -28,6 +30,8 @@ void	*routine(void *arg)
 		eating(philo);
 		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_destroy(philo->right_fork);
+		pthread_mutex_destroy(philo->left_fork);
 		sleeping(philo);
 		thinking(philo);
 	}
@@ -60,6 +64,11 @@ void	join_threads(t_prgm *vars)
 		i++;
 	}
 }
+
+// void	death_supervisor(t_prgm *vars)
+// {
+	
+// }
 
 int	main(int argc, char **argv)
 {

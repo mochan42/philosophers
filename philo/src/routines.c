@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/08 12:48:38 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/08 18:32:09 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,61 @@
 
 void	take_a_fork(t_philo	*philo)
 {
-	time_t	time;
+	long	time;
 
 	time = get_time_ms();
-	printf("%10ld %d has taken a fork\n", time - philo->start_time,
+	printf("%10ld philo %d has taken a fork\n", time - philo->start_time,
 		philo->philo_id);
 }
 
 void	eating(t_philo	*philo)
 {
-	time_t	time;
-	time_t	end_of_meal;
+	long	time;
+	long	end_of_meal;
 
 	time = get_time_ms();
 	end_of_meal = time + philo->tte;
+	printf("philo %d end of meal = %ld\n", philo->philo_id, end_of_meal - philo->start_time);
 	philo->last_meal_time = end_of_meal;
-	printf("%10ld %d is eating\n", time - philo->start_time, philo->philo_id);
+	printf("%10ld philo %d is eating\n", time - philo->start_time, philo->philo_id);
 	while (get_time_ms() < end_of_meal)
 	{
-		usleep(500);
+		usleep(100);
 	}
+	time = get_time_ms();
+	printf("%10ld philo %d finished eating\n", time - philo->start_time, philo->philo_id);
 }
 
 void	sleeping(t_philo *philo)
 {
-	time_t	time;
-	time_t	end_of_sleep;
+	long	time;
+	long	end_of_sleep;
 
 	time = get_time_ms();
+	// printf("%10ld = current time.\n", time);
 	end_of_sleep = time + philo->tts;
-	printf("%10ld %d is sleeping\n", time - philo->start_time, philo->philo_id);
+	// printf("%10ld = philo %d end of sleep time.\n", end_of_sleep - philo->start_time, philo->philo_id);
+	// printf("tts = %ld\n", philo->tts);
+	printf("%10ld philo %d is sleeping\n", time - philo->start_time, philo->philo_id);
 	while (get_time_ms() < end_of_sleep)
 	{
-		usleep(500);
+		usleep(100);
 	}
+	time = get_time_ms();
+	printf("%10ld philo %d has finished sleeping\n", time - philo->start_time, philo->philo_id);
 }
 
 void	thinking(t_philo *philo)
 {
-	time_t	time;
-	time_t	end_of_thinking;
+	long	time;
+	long	end_of_thinking;
 
 	time = get_time_ms();
 	philo->ttt = (philo->ttd - (time - philo->last_meal_time) - philo->tte)/2;
-	printf("%10ld %d is thinking\n", time - philo->start_time, philo->philo_id);
+	printf("%10ld philo %d is thinking\n", time - philo->start_time, philo->philo_id);
 	end_of_thinking = time + philo->ttt;
 	while (get_time_ms() < end_of_thinking)
 	{
-		usleep(500);
+		usleep(50);
 	}
 }

@@ -1,0 +1,125 @@
+         0 philo 2 has taken a fork
+         1 philo 2 has taken a fork
+philo 2 end of meal = 201
+         1 philo 2 is eating
+         1 philo 4 has taken a fork
+         1 philo 4 has taken a fork
+philo 4 end of meal = 201
+         1 philo 4 is eating
+         1 philo 1 has taken a fork
+       330 philo 1 has taken a fork
+philo 1 end of meal = 530
+       330 philo 1 is eating
+       335 philo 2 finished eating
+       335 philo 4 finished eating
+       335 philo 2 is sleeping
+       335 philo 4 is sleeping
+       345 philo 3 has taken a fork
+       345 philo 3 has taken a fork
+philo 3 end of meal = 545
+       345 philo 3 is eating
+       371 philo 5 has taken a fork
+       371 philo 5 has taken a fork
+philo 5 end of meal = 571
+       371 philo 5 is eating
+       530 philo 1 finished eating
+       531 philo 1 is sleeping
+       535 philo 4 has finished sleeping
+       535 philo 4 is thinking
+       535 philo 2 has finished sleeping
+       535 philo 2 is thinking
+       545 philo 3 finished eating
+       545 philo 3 is sleeping
+       574 philo 5 finished eating
+       574 philo 5 is sleeping
+       668 philo 2 has taken a fork
+       668 philo 2 has taken a fork
+       668 philo 4 has taken a fork
+       668 philo 4 has taken a fork
+philo 4 end of meal = 868
+       668 philo 4 is eating
+philo 2 end of meal = 868
+       668 philo 2 is eating
+       731 philo 1 has finished sleeping
+       731 philo 1 is thinking
+       745 philo 3 has finished sleeping
+       745 philo 3 is thinking
+       774 philo 5 has finished sleeping
+       774 philo 5 is thinking
+       871 philo 4 finished eating
+       871 philo 2 finished eating
+       871 philo 4 is sleeping
+       871 philo 2 is sleeping
+       930 philo 1 has taken a fork
+       930 philo 1 has taken a fork
+philo 1 end of meal = 1130
+       930 philo 1 is eating
+       945 philo 3 has taken a fork
+       945 philo 3 has taken a fork
+philo 3 end of meal = 1145
+       945 philo 3 is eating
+       972 philo 5 has taken a fork
+       972 philo 5 has taken a fork
+philo 5 end of meal = 1172
+       972 philo 5 is eating
+      1071 philo 4 has finished sleeping
+      1071 philo 4 is thinking
+      1071 philo 2 has finished sleeping
+      1071 philo 2 is thinking
+      1130 philo 1 finished eating
+      1130 philo 1 is sleeping
+      1145 philo 3 finished eating
+      1145 philo 3 is sleeping
+      1172 philo 5 finished eating
+      1172 philo 5 is sleeping
+      1269 philo 2 has taken a fork
+      1269 philo 4 has taken a fork
+      1269 philo 4 has taken a fork
+      1269 philo 2 has taken a fork
+philo 2 end of meal = 1469
+      1269 philo 2 is eating
+philo 4 end of meal = 1469
+      1269 philo 4 is eating
+      1330 philo 1 has finished sleeping
+      1330 philo 1 is thinking
+      1345 philo 3 has finished sleeping
+      1345 philo 3 is thinking
+      1372 philo 5 has finished sleeping
+      1372 philo 5 is thinking
+      1471 philo 2 finished eating
+      1471 philo 4 finished eating
+      1471 philo 2 is sleeping
+      1471 philo 4 is sleeping
+      1530 philo 1 has taken a fork
+      1530 philo 1 has taken a fork
+philo 1 end of meal = 1730
+      1530 philo 1 is eating
+      1545 philo 3 has taken a fork
+      1545 philo 3 has taken a fork
+philo 3 end of meal = 1745
+      1545 philo 3 is eating
+      1572 philo 5 has taken a fork
+      1572 philo 5 has taken a fork
+philo 5 end of meal = 1772
+      1572 philo 5 is eating
+      1671 philo 4 has finished sleeping
+      1671 philo 4 is thinking
+      1671 philo 2 has finished sleeping
+      1671 philo 2 is thinking
+      1730 philo 1 finished eating
+      1730 philo 1 is sleeping
+      1745 philo 3 finished eating
+      1745 philo 3 is sleeping
+      1772 philo 5 finished eating
+      1772 philo 5 is sleeping
+      1870 philo 2 has taken a fork
+      1870 philo 2 has taken a fork
+philo 2 end of meal = 2070
+      1870 philo 2 is eating
+      1870 philo 4 has taken a fork
+      1870 philo 4 has taken a fork
+philo 4 end of meal = 2070
+      1870 philo 4 is eating
+      1930 philo 1 has finished sleeping
+      1930 philo 1 is thinking
+ 
