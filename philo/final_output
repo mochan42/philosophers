@@ -1,28 +1,49 @@
-         0 philo 2 has taken a fork
-         1 philo 2 has taken a fork
-philo 2 end of meal = 201
+philo 2 has Rf 2 and Lf 3.
+         1 philo 2 has taken a fork 2
+         1 philo 2 has taken a fork 3
          1 philo 2 is eating
-       335 philo 2 finished eating
-       335 philo 2 is sleeping
-       535 philo 2 has finished sleeping
-       535 philo 2 is thinking
-       668 philo 2 has taken a fork
-       668 philo 2 has taken a fork
-philo 2 end of meal = 868
-       668 philo 2 is eating
-       871 philo 2 finished eating
-       871 philo 2 is sleeping
-      1071 philo 2 has finished sleeping
-      1071 philo 2 is thinking
-      1269 philo 2 has taken a fork
-      1269 philo 2 has taken a fork
-philo 2 end of meal = 1469
-      1269 philo 2 is eating
-      1471 philo 2 finished eating
-      1471 philo 2 is sleeping
-      1671 philo 2 has finished sleeping
-      1671 philo 2 is thinking
-      1870 philo 2 has taken a fork
-      1870 philo 2 has taken a fork
-philo 2 end of meal = 2070
-      1870 philo 2 is eating
+       201 philo 2 is sleeping
+       401 philo 2 is thinking
+       601 philo 2 has taken a fork 2
+       601 philo 2 has taken a fork 3
+       601 philo 2 is eating
+       801 philo 2 is sleeping
+      1001 philo 2 is thinking
+      1201 philo 2 has taken a fork 2
+      1201 philo 2 has taken a fork 3
+      1201 philo 2 is eating
+      1401 philo 2 is sleeping
+      1601 philo 2 is thinking
+      1801 philo 2 has taken a fork 2
+      1801 philo 2 has taken a fork 3
+      1801 philo 2 is eating
+      2001 philo 2 is sleeping
+      2201 philo 2 is thinking
+      2401 philo 2 has taken a fork 2
+      2401 philo 2 has taken a fork 3
+      2401 philo 2 is eating
+      2601 philo 2 is sleeping
+      2801 philo 2 is thinking
+      3001 philo 2 has taken a fork 2
+      3001 philo 2 has taken a fork 3
+      3001 philo 2 is eating
+      3201 philo 2 is sleeping
+      3401 philo 2 is thinking
+      3601 philo 2 has taken a fork 2
+      3601 philo 2 has taken a fork 3
+      3601 philo 2 is eating
+      3801 philo 2 is sleeping
+      4001 philo 2 is thinking
+      4201 philo 2 has taken a fork 2
+      4201 philo 2 has taken a fork 3
+      4201 philo 2 is eating
+      4401 philo 2 is sleeping
+      4601 philo 2 is thinking
+      4801 philo 2 has taken a fork 2
+      4801 philo 2 has taken a fork 3
+      4801 philo 2 is eating
+      5001 philo 2 is sleeping
+      5201 philo 2 is thinking
+      5401 philo 2 has taken a fork 2
+      5401 philo 2 has taken a fork 3
+      5401 philo 2 is eating

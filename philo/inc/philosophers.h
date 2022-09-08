@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/08 18:14:41 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/08 21:45:57 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 /* ########################################################################## */
 /* STRUCTURES */
 
+typedef struct s_fork
+{
+	int					id;
+	pthread_mutex_t		mutex;
+}	t_fork;
+
 typedef struct s_philo
 {
 	int				philo_id;
@@ -35,8 +41,9 @@ typedef struct s_philo
 	long			start_time;
 	long			last_meal_time;
 	pthread_t		thread;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
+	int				fork_taken;
 }	t_philo;
 
 typedef struct s_prgm
@@ -53,7 +60,7 @@ typedef struct s_prgm
 	long			time_to_sleep;
 	long			number_must_eat;
 	t_philo			*philos;
-	pthread_mutex_t	*array_forks;
+	t_fork			*array_forks;
 }	t_prgm;
 
 /* ########################################################################## */

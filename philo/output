@@ -1,125 +1,246 @@
-         0 philo 2 has taken a fork
-         1 philo 2 has taken a fork
-philo 2 end of meal = 201
+========================================
+philosophers' forks
+philo 1 has Rf 1 and Lf 2.
+philo 2 has Rf 2 and Lf 3.
+philo 3 has Rf 3 and Lf 4.
+philo 4 has Rf 4 and Lf 5.
+philo 5 has Rf 5 and Lf 1.
+========================================
+         1 philo 2 has taken a fork 2
+         1 philo 2 has taken a fork 3
          1 philo 2 is eating
-         1 philo 4 has taken a fork
-         1 philo 4 has taken a fork
-philo 4 end of meal = 201
+         1 philo 4 has taken a fork 4
+         1 philo 4 has taken a fork 5
          1 philo 4 is eating
-         1 philo 1 has taken a fork
-       330 philo 1 has taken a fork
-philo 1 end of meal = 530
-       330 philo 1 is eating
-       335 philo 2 finished eating
-       335 philo 4 finished eating
-       335 philo 2 is sleeping
-       335 philo 4 is sleeping
-       345 philo 3 has taken a fork
-       345 philo 3 has taken a fork
-philo 3 end of meal = 545
-       345 philo 3 is eating
-       371 philo 5 has taken a fork
-       371 philo 5 has taken a fork
-philo 5 end of meal = 571
-       371 philo 5 is eating
-       530 philo 1 finished eating
-       531 philo 1 is sleeping
-       535 philo 4 has finished sleeping
-       535 philo 4 is thinking
-       535 philo 2 has finished sleeping
-       535 philo 2 is thinking
-       545 philo 3 finished eating
-       545 philo 3 is sleeping
-       574 philo 5 finished eating
-       574 philo 5 is sleeping
-       668 philo 2 has taken a fork
-       668 philo 2 has taken a fork
-       668 philo 4 has taken a fork
-       668 philo 4 has taken a fork
-philo 4 end of meal = 868
-       668 philo 4 is eating
-philo 2 end of meal = 868
-       668 philo 2 is eating
-       731 philo 1 has finished sleeping
-       731 philo 1 is thinking
-       745 philo 3 has finished sleeping
-       745 philo 3 is thinking
-       774 philo 5 has finished sleeping
-       774 philo 5 is thinking
-       871 philo 4 finished eating
-       871 philo 2 finished eating
-       871 philo 4 is sleeping
-       871 philo 2 is sleeping
-       930 philo 1 has taken a fork
-       930 philo 1 has taken a fork
-philo 1 end of meal = 1130
-       930 philo 1 is eating
-       945 philo 3 has taken a fork
-       945 philo 3 has taken a fork
-philo 3 end of meal = 1145
-       945 philo 3 is eating
-       972 philo 5 has taken a fork
-       972 philo 5 has taken a fork
-philo 5 end of meal = 1172
-       972 philo 5 is eating
-      1071 philo 4 has finished sleeping
-      1071 philo 4 is thinking
-      1071 philo 2 has finished sleeping
-      1071 philo 2 is thinking
-      1130 philo 1 finished eating
-      1130 philo 1 is sleeping
-      1145 philo 3 finished eating
-      1145 philo 3 is sleeping
-      1172 philo 5 finished eating
-      1172 philo 5 is sleeping
-      1269 philo 2 has taken a fork
-      1269 philo 4 has taken a fork
-      1269 philo 4 has taken a fork
-      1269 philo 2 has taken a fork
-philo 2 end of meal = 1469
-      1269 philo 2 is eating
-philo 4 end of meal = 1469
-      1269 philo 4 is eating
-      1330 philo 1 has finished sleeping
-      1330 philo 1 is thinking
-      1345 philo 3 has finished sleeping
-      1345 philo 3 is thinking
-      1372 philo 5 has finished sleeping
-      1372 philo 5 is thinking
-      1471 philo 2 finished eating
-      1471 philo 4 finished eating
-      1471 philo 2 is sleeping
-      1471 philo 4 is sleeping
-      1530 philo 1 has taken a fork
-      1530 philo 1 has taken a fork
-philo 1 end of meal = 1730
-      1530 philo 1 is eating
-      1545 philo 3 has taken a fork
-      1545 philo 3 has taken a fork
-philo 3 end of meal = 1745
-      1545 philo 3 is eating
-      1572 philo 5 has taken a fork
-      1572 philo 5 has taken a fork
-philo 5 end of meal = 1772
-      1572 philo 5 is eating
-      1671 philo 4 has finished sleeping
-      1671 philo 4 is thinking
-      1671 philo 2 has finished sleeping
-      1671 philo 2 is thinking
-      1730 philo 1 finished eating
-      1730 philo 1 is sleeping
-      1745 philo 3 finished eating
-      1745 philo 3 is sleeping
-      1772 philo 5 finished eating
-      1772 philo 5 is sleeping
-      1870 philo 2 has taken a fork
-      1870 philo 2 has taken a fork
-philo 2 end of meal = 2070
-      1870 philo 2 is eating
-      1870 philo 4 has taken a fork
-      1870 philo 4 has taken a fork
-philo 4 end of meal = 2070
-      1870 philo 4 is eating
-      1930 philo 1 has finished sleeping
-      1930 philo 1 is thinking
- 
+         2 philo 1 has taken a fork 1
+       201 philo 4 is sleeping
+       201 philo 5 has taken a fork 5
+       201 philo 2 is sleeping
+       201 philo 3 has taken a fork 3
+       201 philo 3 has taken a fork 4
+       201 philo 3 is eating
+       201 philo 1 has taken a fork 2
+       201 philo 1 is eating
+       401 philo 3 is sleeping
+       401 philo 2 is thinking
+       401 philo 5 has taken a fork 1
+       401 philo 5 is eating
+       401 philo 4 is thinking
+       401 philo 1 is sleeping
+       601 philo 1 is thinking
+       601 philo 2 has taken a fork 2
+       601 philo 2 has taken a fork 3
+       601 philo 2 is eating
+       601 philo 4 has taken a fork 4
+       601 philo 5 is sleeping
+       601 philo 4 has taken a fork 5
+       601 philo 4 is eating
+       601 philo 3 is thinking
+       801 philo 2 is sleeping
+       801 philo 3 has taken a fork 3
+       801 philo 4 is sleeping
+       801 philo 3 has taken a fork 4
+       801 philo 3 is eating
+       801 philo 1 has taken a fork 1
+       801 philo 1 has taken a fork 2
+       801 philo 1 is eating
+       801 philo 5 is thinking
+      1001 philo 3 is sleeping
+      1001 philo 5 has taken a fork 5
+      1001 philo 2 is thinking
+      1001 philo 1 is sleeping
+      1001 philo 5 has taken a fork 1
+      1001 philo 5 is eating
+      1001 philo 4 is thinking
+      1201 philo 2 has taken a fork 2
+      1201 philo 3 is thinking
+      1201 philo 2 has taken a fork 3
+      1201 philo 5 is sleeping
+      1201 philo 2 is eating
+      1201 philo 1 is thinking
+      1201 philo 4 has taken a fork 4
+      1201 philo 4 has taken a fork 5
+      1201 philo 4 is eating
+      1401 philo 2 is sleeping
+      1401 philo 4 is sleeping
+      1401 philo 5 is thinking
+      1401 philo 1 has taken a fork 1
+      1401 philo 1 has taken a fork 2
+      1401 philo 1 is eating
+      1401 philo 3 has taken a fork 3
+      1401 philo 3 has taken a fork 4
+      1401 philo 3 is eating
+      1601 philo 1 is sleeping
+      1601 philo 5 has taken a fork 5
+      1601 philo 5 has taken a fork 1
+      1601 philo 5 is eating
+      1601 philo 4 is thinking
+      1601 philo 2 is thinking
+      1601 philo 3 is sleeping
+      1801 philo 1 is thinking
+      1801 philo 3 is thinking
+      1801 philo 2 has taken a fork 2
+      1801 philo 2 has taken a fork 3
+      1801 philo 2 is eating
+      1801 philo 4 has taken a fork 4
+      1801 philo 5 is sleeping
+      1801 philo 4 has taken a fork 5
+      1801 philo 4 is eating
+      2001 philo 5 is thinking
+      2001 philo 1 has taken a fork 1
+      2001 philo 2 is sleeping
+      2001 philo 3 has taken a fork 3
+      2001 philo 4 is sleeping
+      2001 philo 3 has taken a fork 4
+      2001 philo 3 is eating
+      2001 philo 1 has taken a fork 2
+      2001 philo 1 is eating
+      2201 philo 2 is thinking
+      2201 philo 4 is thinking
+      2201 philo 1 is sleeping
+      2201 philo 5 has taken a fork 5
+      2201 philo 5 has taken a fork 1
+      2201 philo 5 is eating
+      2201 philo 3 is sleeping
+      2401 philo 2 has taken a fork 2
+      2401 philo 2 has taken a fork 3
+      2401 philo 4 has taken a fork 4
+      2401 philo 2 is eating
+      2401 philo 5 is sleeping
+      2401 philo 4 has taken a fork 5
+      2401 philo 4 is eating
+      2401 philo 1 is thinking
+      2401 philo 3 is thinking
+      2601 philo 2 is sleeping
+      2601 philo 5 is thinking
+      2601 philo 1 has taken a fork 1
+      2601 philo 1 has taken a fork 2
+      2601 philo 1 is eating
+      2601 philo 4 is sleeping
+      2601 philo 3 has taken a fork 3
+      2601 philo 3 has taken a fork 4
+      2601 philo 3 is eating
+      2801 philo 1 is sleeping
+      2801 philo 2 is thinking
+      2801 philo 4 is thinking
+      2801 philo 3 is sleeping
+      2801 philo 5 has taken a fork 5
+      2801 philo 5 has taken a fork 1
+      2801 philo 5 is eating
+      3001 philo 3 is thinking
+      3001 philo 4 has taken a fork 4
+      3001 philo 4 has taken a fork 5
+      3001 philo 2 has taken a fork 2
+      3001 philo 4 is eating
+      3001 philo 2 has taken a fork 3
+      3001 philo 2 is eating
+      3001 philo 5 is sleeping
+      3001 philo 1 is thinking
+      3201 philo 5 is thinking
+      3201 philo 4 is sleeping
+      3201 philo 2 is sleeping
+      3201 philo 3 has taken a fork 3
+      3201 philo 3 has taken a fork 4
+      3201 philo 3 is eating
+      3201 philo 1 has taken a fork 1
+      3201 philo 1 has taken a fork 2
+      3201 philo 1 is eating
+      3401 philo 1 is sleeping
+      3401 philo 4 is thinking
+      3401 philo 2 is thinking
+      3401 philo 3 is sleeping
+      3401 philo 5 has taken a fork 5
+      3401 philo 5 has taken a fork 1
+      3401 philo 5 is eating
+      3601 philo 4 has taken a fork 4
+      3601 philo 2 has taken a fork 2
+      3601 philo 3 is thinking
+      3601 philo 2 has taken a fork 3
+      3601 philo 1 is thinking
+      3601 philo 2 is eating
+      3601 philo 4 has taken a fork 5
+      3601 philo 4 is eating
+      3601 philo 5 is sleeping
+      3801 philo 5 is thinking
+      3801 philo 2 is sleeping
+      3801 philo 3 has taken a fork 3
+      3801 philo 1 has taken a fork 1
+      3801 philo 1 has taken a fork 2
+      3801 philo 1 is eating
+      3801 philo 4 is sleeping
+      3801 philo 3 has taken a fork 4
+      3801 philo 3 is eating
+      4001 philo 3 is sleeping
+      4001 philo 1 is sleeping
+      4001 philo 5 has taken a fork 5
+      4001 philo 5 has taken a fork 1
+      4001 philo 5 is eating
+      4001 philo 2 is thinking
+      4001 philo 4 is thinking
+      4201 philo 4 has taken a fork 4
+      4201 philo 2 has taken a fork 2
+      4201 philo 4 has taken a fork 5
+      4201 philo 4 is eating
+      4201 philo 3 is thinking
+      4201 philo 1 is thinking
+      4201 philo 5 is sleeping
+      4201 philo 2 has taken a fork 3
+      4201 philo 2 is eating
+      4401 philo 1 has taken a fork 1
+      4401 philo 5 is thinking
+      4401 philo 4 is sleeping
+      4401 philo 3 has taken a fork 3
+      4401 philo 1 has taken a fork 2
+      4401 philo 1 is eating
+      4401 philo 3 has taken a fork 4
+      4401 philo 3 is eating
+      4401 philo 2 is sleeping
+      4601 philo 1 is sleeping
+      4601 philo 5 has taken a fork 5
+      4601 philo 5 has taken a fork 1
+      4601 philo 5 is eating
+      4601 philo 3 is sleeping
+      4601 philo 2 is thinking
+      4601 philo 4 is thinking
+      4801 philo 2 has taken a fork 2
+      4801 philo 2 has taken a fork 3
+      4801 philo 2 is eating
+      4801 philo 1 is thinking
+      4801 philo 3 is thinking
+      4801 philo 5 is sleeping
+      4801 philo 4 has taken a fork 4
+      4801 philo 4 has taken a fork 5
+      4801 philo 4 is eating
+      5001 philo 5 is thinking
+      5001 philo 2 is sleeping
+      5001 philo 1 has taken a fork 1
+      5001 philo 1 has taken a fork 2
+      5001 philo 1 is eating
+      5001 philo 4 is sleeping
+      5001 philo 3 has taken a fork 3
+      5001 philo 3 has taken a fork 4
+      5001 philo 3 is eating
+      5201 philo 2 is thinking
+      5201 philo 4 is thinking
+      5201 philo 1 is sleeping
+      5201 philo 5 has taken a fork 5
+      5201 philo 5 has taken a fork 1
+      5201 philo 5 is eating
+      5201 philo 3 is sleeping
+      5401 philo 3 is thinking
+      5401 philo 5 is sleeping
+      5401 philo 2 has taken a fork 2
+      5401 philo 2 has taken a fork 3
+      5401 philo 2 is eating
+      5401 philo 4 has taken a fork 4
+      5401 philo 4 has taken a fork 5
+      5401 philo 4 is eating
+      5401 philo 1 is thinking
+      5601 philo 1 has taken a fork 1
+      5601 philo 3 has taken a fork 3
+      5601 philo 3 has taken a fork 4
+      5601 philo 3 is eating
+      5601 philo 4 is sleeping
+      5601 philo 5 is thinking
+      5601 philo 1 has taken a fork 2
+      5601 philo 1
