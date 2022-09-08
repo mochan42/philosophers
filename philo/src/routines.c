@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/07 17:55:34 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/08 12:48:38 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	thinking(t_philo *philo)
 	time_t	end_of_thinking;
 
 	time = get_time_ms();
-	philo->ttt = philo->ttd - (time - philo->last_meal_time) - philo->tte;
+	philo->ttt = (philo->ttd - (time - philo->last_meal_time) - philo->tte)/2;
 	printf("%10ld %d is thinking\n", time - philo->start_time, philo->philo_id);
 	end_of_thinking = time + philo->ttt;
 	while (get_time_ms() < end_of_thinking)
