@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/08 21:10:41 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 16:33:12 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,39 @@ void	*routine(void *arg)
 		take_a_fork(philo);
 		pthread_mutex_lock(&philo->left_fork->mutex);
 		take_a_fork(philo);
-		eating(philo);	
+		eating(philo);
 		pthread_mutex_unlock(&philo->left_fork->mutex);
 		pthread_mutex_unlock(&philo->right_fork->mutex);
 		sleeping(philo);
 		thinking(philo);
+	}
+	return (NULL);
+}
+
+void	*death_check(void *arg)
+{
+	t_prgm		*vars;
+	int			i;
+	int			flag_alive;
+
+	vars = (t_prgm *) arg;
+	while (1)
+	{
+		i = 0;
+		while (i < vars->nb_of_philos)
+		{
+			pthread_mutex_lock(&vars->philos[i].alive_mutex);
+			flag_alive = get_time_ms() - vars->philos[i].last_meal_time;
+			pthread_mutex_unlock(&vars->philos[i].alive_mutex);
+			if (flag_alive >= vars->philos[i].ttd)
+			{
+				printf("%10ld philo %d died\n",
+					get_time_ms() - vars->philos[i].start_time,
+					vars->philos[i].philo_id);
+				exit(0);
+			}
+			i++;
+		}
 	}
 	return (NULL);
 }
@@ -43,9 +71,11 @@ void	create_threads(t_prgm *vars)
 	{
 		if (pthread_create(&vars->philos[i].thread, NULL, &routine,
 				&vars->philos[i]) != 0)
-			perror("Failed to create thread");
+			perror("Failed to create thread.\n");
 		i++;
 	}
+	if (pthread_create(&vars->death_supervisor, NULL, &death_check, vars) != 0)
+		perror("Failed to create death supervisor thread.\n");
 }
 
 void	join_threads(t_prgm *vars)
@@ -59,12 +89,9 @@ void	join_threads(t_prgm *vars)
 			perror("Failed to join thread");
 		i++;
 	}
+	if (pthread_join(vars->death_supervisor, NULL) != 0)
+		perror("Failed to join thread");
 }
-
-// void	death_supervisor(t_prgm *vars)
-// {
-	
-// }
 
 int	main(int argc, char **argv)
 {
@@ -77,7 +104,7 @@ int	main(int argc, char **argv)
 	philo_prgm.philos = malloc(sizeof(t_philo) * philo_prgm.nb_of_philos);
 	if (!philo_prgm.philos)
 		return (0);
-	philo_prgm.array_forks = malloc(sizeof(pthread_mutex_t)
+	philo_prgm.array_forks = malloc(sizeof(t_fork)
 			* philo_prgm.nb_of_philos);
 	if (!philo_prgm.array_forks)
 		return (0);

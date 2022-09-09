@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/08 21:45:57 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 16:26:54 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_philo
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	int				fork_taken;
+	int				alive;
+	pthread_mutex_t	alive_mutex;
 }	t_philo;
 
 typedef struct s_prgm
@@ -53,12 +55,12 @@ typedef struct s_prgm
 	char			**argv;
 	int				nb_of_philos;
 	int				nb_of_forks;
-	// bool			continue_prgm; // 1 = continue prgm, 0 = stop prog.
-	// pthread_t		death_supervisor;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			number_must_eat;
+	int				running;
+	pthread_t		death_supervisor;
 	t_philo			*philos;
 	t_fork			*array_forks;
 }	t_prgm;
@@ -81,7 +83,7 @@ void		check_number_value(t_prgm *vars);
 void		initialize(t_prgm *vars);
 
 /* routines.c */
-void		eating(t_philo	*philo);
+void		eating(t_philo *philo);
 void		sleeping(t_philo *philo);
 void		take_a_fork(t_philo	*philo);
 void		thinking(t_philo *philo);
