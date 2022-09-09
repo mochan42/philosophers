@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:40:49 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 23:51:52 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,43 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg;
+	usleep(500);
 	if (philo->philo_id % 2)
 		usleep(1000);
 	while (1)
 	{
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
 		pthread_mutex_lock(&philo->right_fork->mutex);
-		take_a_fork(philo);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 0)
+			take_a_fork(philo);
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
 		pthread_mutex_lock(&philo->left_fork->mutex);
-		take_a_fork(philo);
-		eating(philo);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 0)
+			take_a_fork(philo);
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 0)
+			eating(philo);
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
 		pthread_mutex_unlock(&philo->left_fork->mutex);
 		pthread_mutex_unlock(&philo->right_fork->mutex);
-		sleeping(philo);
-		thinking(philo);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 0)
+			sleeping(philo);
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 0)
+			thinking(philo);
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
+		// pthread_mutex_lock(&philo->exit_flag_mutex);
+		if (philo->philo_exit_flag == 1)
+		{
+			// pthread_mutex_unlock(&philo->exit_flag_mutex);
+			break;
+		}
+		// pthread_mutex_unlock(&philo->exit_flag_mutex);
 	}
 	return (NULL);
 }
@@ -39,6 +63,7 @@ void	*death_check(void *arg)
 	t_prgm		*vars;
 	int			i;
 	int			flag_alive;
+	int			j;
 
 	vars = (t_prgm *) arg;
 	while (1)
@@ -46,17 +71,30 @@ void	*death_check(void *arg)
 		i = 0;
 		while (i < vars->nb_of_philos)
 		{
-			pthread_mutex_lock(&vars->philos[i].alive_mutex);
+			pthread_mutex_lock(&vars->philos[i].exit_flag_mutex);
+			pthread_mutex_lock(&vars->philos[i].last_meal_mutex);
 			flag_alive = get_time_ms() - vars->philos[i].last_meal_time;
-			pthread_mutex_unlock(&vars->philos[i].alive_mutex);
 			if (flag_alive >= vars->philos[i].ttd)
 			{
-				printf("%10ld philo %d died\n",
-					get_time_ms() - vars->philos[i].start_time,
-					vars->philos[i].philo_id);
-				exit(0);
+				vars->exit_flag = 1;
+				j = 0;
+				while (j < vars->nb_of_philos)
+				{
+					vars->philos[j].philo_exit_flag = 1;
+					j++;
+				}
+				break;
 			}
+			pthread_mutex_unlock(&vars->philos[i].last_meal_mutex);
+			pthread_mutex_unlock(&vars->philos[i].exit_flag_mutex);
 			i++;
+		}
+		if (vars->exit_flag == 1)
+		{
+			printf("%10ld philo %d died\n",
+				get_time_ms() - vars->philos[i].start_time,
+				vars->philos[i].philo_id);
+			break;
 		}
 	}
 	return (NULL);

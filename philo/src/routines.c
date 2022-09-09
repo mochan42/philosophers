@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:44:17 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 21:49:38 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	eating(t_philo	*philo)
 	long	end_of_meal;
 
 	time = get_time_ms();
-	end_of_meal = time + philo->tte;
-	pthread_mutex_lock(&philo->alive_mutex);
+	end_of_meal = time;
+	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal_time = end_of_meal;
-	pthread_mutex_unlock(&philo->alive_mutex);
+	pthread_mutex_unlock(&philo->last_meal_mutex);
 	printf("%10ld %d is eating\n",
 		time - philo->start_time, philo->philo_id);
-	while (get_time_ms() < end_of_meal)
+	while (get_time_ms() < end_of_meal + philo->tte)
 		usleep(100);
 }
 

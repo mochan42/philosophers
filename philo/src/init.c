@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:46:12 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:30:14 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 23:33:37 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static void	init_philosophers(t_prgm *vars)
 		vars->philos[i].tts = vars->time_to_sleep;
 		vars->philos[i].start_time = vars->start_time;
 		vars->philos[i].fork_taken = 0;
-		vars->philos[i].alive = 1;
+		vars->philos[i].philo_exit_flag = 0;
 		vars->philos[i].last_meal_time = vars->start_time;
-		pthread_mutex_init(&vars->philos[i].alive_mutex, NULL);
+		pthread_mutex_init(&vars->philos[i].last_meal_mutex, NULL);
+		pthread_mutex_init(&vars->philos[i].exit_flag_mutex, NULL);
 		i++;
 	}
 }
@@ -63,7 +64,10 @@ static void	assign_forks(t_prgm *vars)
 
 void	initialize(t_prgm *vars)
 {
-	vars->running = 1;
+	int	i;
+
+	i = 0;
+	vars->exit_flag = 0;
 	init_philosophers(vars);
 	init_forks(vars);
 	assign_forks(vars);

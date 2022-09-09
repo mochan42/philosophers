@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:06:10 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:41:50 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 23:33:28 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ void	destroy_mutexes(t_prgm vars)
 	int i;
 
 	i = 0;
-	while (i < vars.nb_of_philos - 1)
+	while (i < vars.nb_of_philos)
 	{
-		pthread_mutex_destroy(&vars.philos[i].alive_mutex);
 		pthread_mutex_destroy(&vars.philos[i].right_fork->mutex);
 		pthread_mutex_destroy(&vars.philos[i].left_fork->mutex);
+		pthread_mutex_destroy(&vars.philos[i].last_meal_mutex);
+		pthread_mutex_destroy(&vars.philos[i].exit_flag_mutex);
+		i++;
 	}
 }
