@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:33:12 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 16:40:49 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ int	main(int argc, char **argv)
 	initialize(&philo_prgm);
 	create_threads(&philo_prgm);
 	join_threads(&philo_prgm);
+	destroy_mutexes(philo_prgm);
 	return (0);
 }

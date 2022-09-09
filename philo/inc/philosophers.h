@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/09 16:26:54 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/09 16:40:39 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ long		get_time_ms(void);
 /* utils_1.c */
 int			my_isspace(char c);
 int			ft_atoi(const char *str);
+void		destroy_mutexes(t_prgm vars);
 
 #endif
