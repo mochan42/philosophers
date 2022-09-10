@@ -4,7 +4,8 @@
 NAME				:= philo
 
 CC					:= gcc
-CFLAGS				:= -Wall -Wextra -Werror -pthread #-fsanitize=thread -g
+CFLAGS				:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS_SANITIZE		:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 RM					:= rm -rf
 INCS				:= -I ./inc/
 HEADER				:= ./inc/philosophers.h
@@ -38,7 +39,7 @@ OBJ					:= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 all : $(NAME)
 
 $(NAME):  $(OBJ_DIR) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(FT_PRINTF_A) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled :)$(END_COLOR)"
 # -C	:	make option that tells make to change directory before execution.
 
@@ -55,6 +56,11 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
+
+debug:  $(OBJ_DIR) $(OBJ)
+	$(CC) $(CFLAGS_SANITIZE) $(OBJ) -o $(NAME)
+	@echo "$(YELLOW)/!\ $(NAME) compiled with -fsanitize=thread -g flag!$(END_COLOR)"
+# -C	:	make option that tells make to change directory before execution.
 
 clean: 
 	$(RM) $(OBJ)
