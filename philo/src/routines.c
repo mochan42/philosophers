@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 18:54:44 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/10 19:18:52 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	eating(t_philo	*philo)
 	time = get_time_ms();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal_time = time;
+	if (philo->number_must_eat > 0)
+		philo->number_must_eat -= 1;
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	end_of_meal = philo->tte + time;
 	pthread_mutex_lock(&philo->exit_flag_mutex);

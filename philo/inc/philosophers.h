@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 18:00:44 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/10 19:08:36 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	long			tte;
 	long			tts;
 	long			ttt;
+	long			number_must_eat;
 	long			start_time;
 	long			last_meal_time;
 	pthread_t		thread;

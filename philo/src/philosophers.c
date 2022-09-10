@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 19:03:25 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/10 19:17:29 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	*routine(void *arg)
 void	*death_check(void *arg)
 {
 	t_prgm		*vars;
-	int			ct[2];
+	int			ct[3];
 	long		time;
 	long		lifespan;
 
-	
 	vars = (t_prgm *) arg;
+	ct[2] = vars->nb_of_philos;
 	while (1)
 	{
 		time = get_time_ms();
@@ -71,8 +71,13 @@ void	*death_check(void *arg)
 		{
 			pthread_mutex_lock(&vars->philos[ct[0]].last_meal_mutex);
 			lifespan = time - vars->philos[ct[0]].last_meal_time;
+			if (vars->philos[ct[0]].number_must_eat == 0)
+			{
+				ct[2] -= 1;
+				vars->philos[ct[0]].number_must_eat -= 1;
+			}
 			pthread_mutex_unlock(&vars->philos[ct[0]].last_meal_mutex);
-			if (lifespan >= vars->philos->ttd)
+			if (lifespan >= vars->philos->ttd || ct[2] == 0)
 			{
 				ct[1] = 0;
 				while (ct[1] < vars->nb_of_philos)
@@ -82,6 +87,8 @@ void	*death_check(void *arg)
 					pthread_mutex_unlock(&vars->philos[ct[1]].exit_flag_mutex);
 					ct[1] += 1;
 				}
+				if (ct[2] == 0)
+					return (NULL);
 				printf("%10ld %d died\n",
 						get_time_ms() - vars->philos[0].start_time,
 						vars->philos[0].philo_id);
