@@ -4,8 +4,12 @@
 NAME				:= philo
 
 CC					:= gcc
-CFLAGS				:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
-CFLAGS_SANITIZE		:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS				:= -Wall -Wextra -Werror -pthread
+DEBUG				:= none
+ifeq ($(DEBUG), ON)
+	CFLAGS			:= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+endif
+
 RM					:= rm -rf
 INCS				:= -I ./inc/
 HEADER				:= ./inc/philosophers.h
