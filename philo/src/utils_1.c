@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:06:10 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 19:02:07 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 00:07:28 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_atoi(const char *str)
 
 void	destroy_mutexes(t_prgm vars)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < vars.nb_of_philos)
@@ -56,3 +56,4 @@ void	destroy_mutexes(t_prgm vars)
 		i++;
 	}
 }
+

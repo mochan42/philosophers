@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:34:28 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 19:35:48 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/10 20:05:44 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ void	check_number_value(t_prgm *vars)
 		printf("error: time to sleep must be between 0 and 2147483647.\n");
 		exit (0);
 	}
-	if (vars->argc == 6 && (vars->number_must_eat > MAX_INT || vars->number_must_eat < 0))
+	if (vars->argc == 6 && (vars->number_must_eat > MAX_INT
+			|| vars->number_must_eat < 0))
 	{
-		printf("error: number_of_times_each_philosopher_must_eat must be >0 or less than 2147483647.\n");
+		printf("error: number od meals must be >0 or less than 2147483647.\n");
 		exit (0);
 	}
 	if (vars->argc == 6 && vars->number_must_eat == 0)

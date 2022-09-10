@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 19:17:29 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 00:04:40 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_unlock(&philo->exit_flag_mutex);
 		pthread_mutex_lock(&philo->right_fork->mutex);
-		take_a_fork(philo);
+		// take_a_fork(philo);
 		pthread_mutex_lock(&philo->left_fork->mutex);
 		take_a_fork(philo);
 		eating(philo);
@@ -59,10 +59,10 @@ void	*death_check(void *arg)
 			vars->philos[0].exit_flag = 1;
 			pthread_mutex_unlock(&vars->philos[0].exit_flag_mutex);
 			printf("%10ld %d has taken a fork\n",
-				get_time_ms() - vars->philos[0].start_time,
+				time - vars->philos[0].start_time,
 				vars->philos[0].philo_id);
 			printf("%10ld %d died\n",
-				get_time_ms() - vars->philos[0].start_time,
+				vars->philos[0].ttd,
 				vars->philos[0].philo_id);
 			return (NULL);
 		}
@@ -90,8 +90,8 @@ void	*death_check(void *arg)
 				if (ct[2] == 0)
 					return (NULL);
 				printf("%10ld %d died\n",
-						get_time_ms() - vars->philos[0].start_time,
-						vars->philos[0].philo_id);
+					get_time_ms() - vars->philos[0].start_time,
+					vars->philos[0].philo_id);
 				return (NULL);
 			}
 			ct[0] += 1;
@@ -136,7 +136,6 @@ int	main(int argc, char **argv)
 	t_prgm			philo_prgm;
 	pthread_t		death_supervisor[1];
 
-	philo_prgm.start_time = get_time_ms();
 	philo_prgm.argc = argc;
 	philo_prgm.argv = argv;
 	check_input(&philo_prgm);
@@ -147,9 +146,12 @@ int	main(int argc, char **argv)
 			* philo_prgm.nb_of_philos);
 	if (!philo_prgm.array_forks)
 		return (0);
+	philo_prgm.start_time = get_time_ms();
 	initialize(&philo_prgm);
 	create_threads(&philo_prgm, death_supervisor);
 	join_threads(&philo_prgm, death_supervisor);
 	destroy_mutexes(philo_prgm);
+	free(philo_prgm.philos);
+	free(philo_prgm.array_forks);
 	return (0);
 }
