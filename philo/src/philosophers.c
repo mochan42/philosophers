@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 17:51:47 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 19:07:20 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,69 +40,6 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	*death_check(void *arg)
-{
-	t_prgm		*vars;
-	int			ct[3];
-	long		time;
-	long		lifespan;
-
-	vars = (t_prgm *) arg;
-	ct[2] = vars->nb_of_philos;
-	while (1)
-	{
-		time = get_time_ms();
-		if (vars->nb_of_philos == 1)
-		{
-			pthread_mutex_lock(&vars->philos[0].exit_flag_mutex);
-			vars->philos[0].exit_flag = 1;
-			pthread_mutex_unlock(&vars->philos[0].exit_flag_mutex);
-			pthread_mutex_lock(vars->philos[0].printf_mutex);
-			printf("%10ld %d has taken a fork\n",
-				time - vars->philos[0].start_time,
-				vars->philos[0].philo_id);
-			printf("%10ld %d died\n",
-				vars->philos[0].ttd,
-				vars->philos[0].philo_id);
-			pthread_mutex_unlock(vars->philos[0].printf_mutex);
-			return (NULL);
-		}
-		ct[0] = 0;
-		while (ct[0] < vars->nb_of_philos)
-		{
-			pthread_mutex_lock(&vars->philos[ct[0]].last_meal_mutex);
-			lifespan = time - vars->philos[ct[0]].last_meal_time;
-			if (vars->philos[ct[0]].number_must_eat == 0)
-			{
-				ct[2] -= 1;
-				vars->philos[ct[0]].number_must_eat -= 1;
-			}
-			pthread_mutex_unlock(&vars->philos[ct[0]].last_meal_mutex);
-			if (lifespan - 20 >= vars->philos->ttd || ct[2] == 0)
-			{
-				ct[1] = 0;
-				while (ct[1] < vars->nb_of_philos)
-				{
-					pthread_mutex_lock(&vars->philos[ct[1]].exit_flag_mutex);
-					vars->philos[ct[1]].exit_flag = 1;
-					pthread_mutex_unlock(&vars->philos[ct[1]].exit_flag_mutex);
-					ct[1] += 1;
-				}
-				if (ct[2] == 0)
-					return (NULL);
-				pthread_mutex_lock(vars->philos[ct[0]].printf_mutex);
-				printf("%10ld %d died\n",
-					get_time_ms() -20 - vars->philos[0].start_time,
-					vars->philos[0].philo_id);
-				pthread_mutex_unlock(vars->philos[ct[0]].printf_mutex);
-				return (NULL);
-			}
-			ct[0] += 1;
-		}
-	}
-	return (NULL);
-}
-
 void	create_threads(t_prgm *vars, pthread_t *thread)
 {
 	int	i;
@@ -115,7 +52,7 @@ void	create_threads(t_prgm *vars, pthread_t *thread)
 			perror("Failed to create thread.\n");
 		i++;
 	}
-	if (pthread_create(thread, NULL, &death_check, vars) != 0)
+	if (pthread_create(thread, NULL, &death_routine, vars) != 0)
 		perror("Failed to create death supervisor thread.\n");
 }
 
@@ -137,7 +74,7 @@ void	join_threads(t_prgm *vars, pthread_t *thread)
 int	main(int argc, char **argv)
 {
 	t_prgm			philo_prgm;
-	pthread_t		death_supervisor[1];
+	pthread_t		death_routine[1];
 
 	philo_prgm.argc = argc;
 	philo_prgm.argv = argv;
@@ -151,8 +88,8 @@ int	main(int argc, char **argv)
 		return (0);
 	philo_prgm.start_time = get_time_ms();
 	initialize(&philo_prgm);
-	create_threads(&philo_prgm, death_supervisor);
-	join_threads(&philo_prgm, death_supervisor);
+	create_threads(&philo_prgm, death_routine);
+	join_threads(&philo_prgm, death_routine);
 	destroy_mutexes(philo_prgm);
 	free(philo_prgm.philos);
 	free(philo_prgm.array_forks);

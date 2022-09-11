@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_1.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:06:10 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 00:07:28 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 19:17:13 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philosophers.h"
+
+int	stop_prgm(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->exit_flag_mutex);
+	if (philo->exit_flag == 1)
+	{
+		pthread_mutex_unlock(&philo->exit_flag_mutex);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->exit_flag_mutex);
+	return (0);
+}
 
 int	my_isspace(char c)
 {
@@ -57,3 +69,15 @@ void	destroy_mutexes(t_prgm vars)
 	}
 }
 
+void	retrieve_args(t_prgm *vars)
+{
+	vars->nb_of_philos = ft_atoi(vars->argv[1]);
+	vars->time_to_die = ft_atoi(vars->argv[2]);
+	vars->time_to_eat = ft_atoi(vars->argv[3]);
+	vars->time_to_sleep = ft_atoi(vars->argv[4]);
+	if (vars->argc == 6)
+		vars->number_must_eat = ft_atoi(
+				vars->argv[5]);
+	else
+		vars->number_must_eat = -1;
+}

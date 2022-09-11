@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 17:27:20 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 19:17:51 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_prgm
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			number_must_eat;
+	long			curr_time;
+	int				ct[3];
 	pthread_mutex_t	printf_mutex;
 	t_philo			*philos;
 	t_fork			*array_forks;
@@ -71,6 +73,7 @@ typedef struct s_prgm
 /* CONSTANTS */
 
 # define MAX_INT 2147483647
+# define TIME_LOST 20
 
 /* ########################################################################## */
 /* FUNCTIONS */
@@ -79,7 +82,11 @@ typedef struct s_prgm
 void		check_arg_is_digit(t_prgm	*vars);
 void		check_input(t_prgm	*vars);
 void		check_nb_arguments(t_prgm	*vars);
-void		check_number_value(t_prgm *vars);
+void		check_number_value_1(t_prgm *vars);
+void		check_number_value_2(t_prgm *vars);
+
+/* death_management.c */
+void		*death_routine(void *arg);
 
 /* init.c */
 void		initialize(t_prgm *vars);
@@ -93,10 +100,11 @@ void		thinking(t_philo *philo);
 /* time.c */
 long		get_time_ms(void);
 
-/* utils_1.c */
-int			my_isspace(char c);
-void		free_philos(t_prgm *vars);
-int			ft_atoi(const char *str);
+/* utils.c */
 void		destroy_mutexes(t_prgm vars);
+int			ft_atoi(const char *str);
+int			my_isspace(char c);
+void		retrieve_args(t_prgm *vars);
+int			stop_prgm(t_philo *philo);
 
 #endif

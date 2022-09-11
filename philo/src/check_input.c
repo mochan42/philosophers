@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:34:28 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 20:05:44 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 19:19:27 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,8 @@ void	check_arg_is_digit(t_prgm	*vars)
 	}
 }
 
-void	check_number_value(t_prgm *vars)
+void	check_number_value_1(t_prgm *vars)
 {
-	vars->nb_of_philos = ft_atoi(vars->argv[1]);
-	vars->time_to_die = ft_atoi(vars->argv[2]);
-	vars->time_to_eat = ft_atoi(vars->argv[3]);
-	vars->time_to_sleep = ft_atoi(vars->argv[4]);
-	if (vars->argc == 6)
-		vars->number_must_eat = ft_atoi(
-				vars->argv[5]);
-	else
-		vars->number_must_eat = -1;
 	if (vars->nb_of_philos < 1 || vars->nb_of_philos > 200)
 	{
 		printf("error: number of philosophers must be between 1 and 200.\n");
@@ -82,6 +73,10 @@ void	check_number_value(t_prgm *vars)
 		printf("error: time to sleep must be between 0 and 2147483647.\n");
 		exit (0);
 	}
+}
+
+void	check_number_value_2(t_prgm *vars)
+{
 	if (vars->argc == 6 && (vars->number_must_eat > MAX_INT
 			|| vars->number_must_eat < 0))
 	{
@@ -99,5 +94,7 @@ void	check_input(t_prgm	*vars)
 {
 	check_nb_arguments(vars);
 	check_arg_is_digit(vars);
-	check_number_value(vars);
+	retrieve_args(vars);
+	check_number_value_1(vars);
+	check_number_value_2(vars);
 }

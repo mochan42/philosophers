@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 17:51:23 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 18:20:45 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 void	take_forks(t_philo	*philo)
 {
-	pthread_mutex_lock(&philo->exit_flag_mutex);
-	if (philo->exit_flag == 1)
-	{
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
+	if (stop_prgm(philo) == 1)
 		return ;
-	}
-	pthread_mutex_unlock(&philo->exit_flag_mutex);
 	pthread_mutex_lock(philo->printf_mutex);
 	printf("%10ld %d has taken a fork\n", get_time_ms() - philo->start_time,
 		philo->philo_id);
@@ -69,26 +64,16 @@ void	eating(t_philo	*philo)
 		philo->number_must_eat -= 1;
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	end_of_meal = philo->tte + time;
-	pthread_mutex_lock(&philo->exit_flag_mutex);
-	if (philo->exit_flag == 1)
-	{
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
+	if (stop_prgm(philo) == 1)
 		return ;
-	}
-	pthread_mutex_unlock(&philo->exit_flag_mutex);
 	pthread_mutex_lock(philo->printf_mutex);
 	printf("%10ld %d is eating\n",
 		time - philo->start_time, philo->philo_id);
 	pthread_mutex_unlock(philo->printf_mutex);
 	while (get_time_ms() < end_of_meal)
 	{
-		pthread_mutex_lock(&philo->exit_flag_mutex);
-		if (philo->exit_flag == 1)
-		{
-			pthread_mutex_unlock(&philo->exit_flag_mutex);
+		if (stop_prgm(philo) == 1)
 			return ;
-		}
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
 		usleep(100);
 	}
 }
@@ -100,26 +85,16 @@ void	sleeping(t_philo *philo)
 
 	time = get_time_ms();
 	end_of_sleep = time + philo->tts;
-	pthread_mutex_lock(&philo->exit_flag_mutex);
-	if (philo->exit_flag == 1)
-	{
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
+	if (stop_prgm(philo) == 1)
 		return ;
-	}
-	pthread_mutex_unlock(&philo->exit_flag_mutex);
 	pthread_mutex_lock(philo->printf_mutex);
 	printf("%10ld %d is sleeping\n",
 		time - philo->start_time, philo->philo_id);
 	pthread_mutex_unlock(philo->printf_mutex);
 	while (get_time_ms() < end_of_sleep)
 	{
-		pthread_mutex_lock(&philo->exit_flag_mutex);
-		if (philo->exit_flag == 1)
-		{
-			pthread_mutex_unlock(&philo->exit_flag_mutex);
+		if (stop_prgm(philo) == 1)
 			return ;
-		}
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
 		usleep(100);
 	}
 }
@@ -130,13 +105,8 @@ void	thinking(t_philo *philo)
 	long	end_of_thinking;
 
 	time = get_time_ms();
-	pthread_mutex_lock(&philo->exit_flag_mutex);
-	if (philo->exit_flag == 1)
-	{
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
+	if (stop_prgm(philo) == 1)
 		return ;
-	}
-	pthread_mutex_unlock(&philo->exit_flag_mutex);
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->ttt = (philo->ttd - (get_time_ms() - philo->last_meal_time)
 			- philo->tte) / 2;
@@ -152,13 +122,8 @@ void	thinking(t_philo *philo)
 	pthread_mutex_unlock(philo->printf_mutex);
 	while (get_time_ms() < end_of_thinking)
 	{
-		pthread_mutex_lock(&philo->exit_flag_mutex);
-		if (philo->exit_flag == 1)
-		{
-			pthread_mutex_unlock(&philo->exit_flag_mutex);
+		if (stop_prgm(philo) == 1)
 			return ;
-		}
-		pthread_mutex_unlock(&philo->exit_flag_mutex);
 		usleep(100);
 	}
 }
