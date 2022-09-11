@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 17:02:30 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 17:51:47 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_unlock(&philo->exit_flag_mutex);
 		pthread_mutex_lock(&philo->right_fork->mutex);
-		// take_a_fork(philo);
 		pthread_mutex_lock(&philo->left_fork->mutex);
-		take_a_fork(philo);
+		take_forks(philo);
 		eating(philo);
 		pthread_mutex_unlock(&philo->left_fork->mutex);
 		pthread_mutex_unlock(&philo->right_fork->mutex);
@@ -58,12 +57,14 @@ void	*death_check(void *arg)
 			pthread_mutex_lock(&vars->philos[0].exit_flag_mutex);
 			vars->philos[0].exit_flag = 1;
 			pthread_mutex_unlock(&vars->philos[0].exit_flag_mutex);
+			pthread_mutex_lock(vars->philos[0].printf_mutex);
 			printf("%10ld %d has taken a fork\n",
 				time - vars->philos[0].start_time,
 				vars->philos[0].philo_id);
 			printf("%10ld %d died\n",
 				vars->philos[0].ttd,
 				vars->philos[0].philo_id);
+			pthread_mutex_unlock(vars->philos[0].printf_mutex);
 			return (NULL);
 		}
 		ct[0] = 0;
@@ -89,9 +90,11 @@ void	*death_check(void *arg)
 				}
 				if (ct[2] == 0)
 					return (NULL);
+				pthread_mutex_lock(vars->philos[ct[0]].printf_mutex);
 				printf("%10ld %d died\n",
 					get_time_ms() -20 - vars->philos[0].start_time,
 					vars->philos[0].philo_id);
+				pthread_mutex_unlock(vars->philos[ct[0]].printf_mutex);
 				return (NULL);
 			}
 			ct[0] += 1;

@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:46:12 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 21:05:23 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 17:33:57 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,12 @@ static void	init_philosophers(t_prgm *vars)
 		pthread_mutex_init(&vars->philos[i].last_meal_mutex, NULL);
 		pthread_mutex_init(&vars->philos[i].exit_flag_mutex, NULL);
 		pthread_mutex_init(&vars->array_forks[i].mutex, NULL);
+		vars->philos[i].printf_mutex = &vars->printf_mutex;
 		i++;
 	}
 }
 
-// static void	init_forks(t_prgm *vars)
-// {
-// 	int				i;
-
-// 	i = 0;
-// 	while (i < vars->nb_of_philos)
-// 	{
-// 		vars->array_forks[i].id = i + 1;
-// 		pthread_mutex_init(&vars->array_forks[i].mutex, NULL);
-// 		i++;
-// 	}
-// }
-
-static void	assign_forks(t_prgm *vars)
+static void	init_and_assign_forks(t_prgm *vars)
 {
 	int			i;
 
@@ -66,7 +54,7 @@ static void	assign_forks(t_prgm *vars)
 
 void	initialize(t_prgm *vars)
 {
+	pthread_mutex_init(&vars->printf_mutex, NULL);
 	init_philosophers(vars);
-	// init_forks(vars);
-	assign_forks(vars);
+	init_and_assign_forks(vars);
 }
