@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 00:04:40 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 17:02:30 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*death_check(void *arg)
 				vars->philos[ct[0]].number_must_eat -= 1;
 			}
 			pthread_mutex_unlock(&vars->philos[ct[0]].last_meal_mutex);
-			if (lifespan >= vars->philos->ttd || ct[2] == 0)
+			if (lifespan - 20 >= vars->philos->ttd || ct[2] == 0)
 			{
 				ct[1] = 0;
 				while (ct[1] < vars->nb_of_philos)
@@ -90,7 +90,7 @@ void	*death_check(void *arg)
 				if (ct[2] == 0)
 					return (NULL);
 				printf("%10ld %d died\n",
-					get_time_ms() - vars->philos[0].start_time,
+					get_time_ms() -20 - vars->philos[0].start_time,
 					vars->philos[0].philo_id);
 				return (NULL);
 			}

@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:23:07 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/10 23:45:29 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/11 16:56:56 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	eating(t_philo	*philo)
 
 	time = get_time_ms();
 	pthread_mutex_lock(&philo->last_meal_mutex);
-	philo->last_meal_time = time;
+	philo->last_meal_time = get_time_ms();
 	if (philo->number_must_eat > 0)
 		philo->number_must_eat -= 1;
 	pthread_mutex_unlock(&philo->last_meal_mutex);
@@ -146,7 +146,7 @@ void	thinking(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->exit_flag_mutex);
 	pthread_mutex_lock(&philo->last_meal_mutex);
-	philo->ttt = (philo->ttd - (time - philo->last_meal_time)
+	philo->ttt = (philo->ttd - (get_time_ms() - philo->last_meal_time)
 			- philo->tte) / 2;
 	if (philo->ttt < 0)
 		philo->ttt = 0;
