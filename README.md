@@ -15,7 +15,7 @@ Enter into the directory `philosophers` (or type in the name of the folder you c
 Then, enter into the sub-directory `philo`
 `cd philo`
 
-Run the Makefile:<br>
+Run the Makefile to compile the programme:<br>
 `make` for mandatory part<br>
 `make DEBUG=ON` for mandatory using the thread sanitizer flag :  `-fsanitize=thread -g`
 
