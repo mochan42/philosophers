@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:44 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 19:07:20 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:20:34 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int	main(int argc, char **argv)
 
 	philo_prgm.argc = argc;
 	philo_prgm.argv = argv;
-	check_input(&philo_prgm);
+	if (check_input(&philo_prgm) == 1)
+		return (0);
 	philo_prgm.philos = malloc(sizeof(t_philo) * philo_prgm.nb_of_philos);
 	if (!philo_prgm.philos)
 		return (0);

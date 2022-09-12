@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:44:47 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 19:17:51 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:24:06 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ typedef struct s_prgm
 /* FUNCTIONS */
 
 /* check_input.c */
-void		check_arg_is_digit(t_prgm	*vars);
-void		check_input(t_prgm	*vars);
-void		check_nb_arguments(t_prgm	*vars);
-void		check_number_value_1(t_prgm *vars);
-void		check_number_value_2(t_prgm *vars);
+int			check_arg_is_digit(t_prgm	*vars);
+int			check_input(t_prgm	*vars);
+int			check_nb_arguments(t_prgm	*vars);
+int			check_number_value_1(t_prgm *vars);
+int			check_number_value_2(t_prgm *vars);
 
 /* death_management.c */
 void		*death_routine(void *arg);

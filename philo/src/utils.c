@@ -6,7 +6,7 @@
 /*   By: mochan <mochan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:06:10 by mochan            #+#    #+#             */
-/*   Updated: 2022/09/11 19:17:13 by mochan           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:14:07 by mochan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	destroy_mutexes(t_prgm vars)
 		pthread_mutex_destroy(&vars.philos[i].exit_flag_mutex);
 		i++;
 	}
+	pthread_mutex_destroy(&vars.printf_mutex);
 }
 
 void	retrieve_args(t_prgm *vars)
