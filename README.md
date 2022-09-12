@@ -17,7 +17,7 @@ Then, enter into the sub-directory `philo`
 
 Run the Makefile to compile the programme:<br>
 `make` for mandatory part<br>
-`make DEBUG=ON` for mandatory using the thread sanitizer flag :  `-fsanitize=thread -g`
+`make DEBUG=ON` for mandatory part and using the thread sanitizer flag :  `-fsanitize=thread -g`
 
 To run the programme :<br>
 `./philo 5 800 200 100 2`<br>
